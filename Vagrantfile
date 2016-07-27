@@ -53,7 +53,9 @@ Vagrant.configure(2) do |config|
  
     # Customize the amount of memory on the VM:
     vb.memory = "1024"
+
     vb.cpus = 8
+    vb.name = "vagrant-template"
   end
   #
   # View the documentation for the provider you are using for more
@@ -72,5 +74,9 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", run: "always", inline: <<-SHELL
     sudo /usr/sbin/ip route del default
     sudo /usr/sbin/ip route add default via  172.28.32.254  dev eth1
+    sudo yum install -y vim
+    sudo yum install -y lsof
+    sudo yum install -y wget
+    sudo yum install -y epel-release
   SHELL
 end
