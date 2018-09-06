@@ -1,6 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
-$ipaddr = "172.28.32.100"
+$ipaddr = "192.168.168.170"
 $hostname = "vagrant-" + $ipaddr.gsub(".", '-')
 
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
@@ -15,7 +15,7 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "centos7"
+  config.vm.box = "centos-7.2-100g-v1"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -35,7 +35,7 @@ Vagrant.configure(2) do |config|
   # Bridged networks make the machine appear as another physical device on
   # your network.
   # config.vm.network "public_network"
-  config.vm.network :public_network,ip:$ipaddr
+  config.vm.network :public_network,ip:$ipaddr, bridge: "em1"
 
   # Share an additional folder to the guest VM. The first argument is
   # the path on the host to the actual folder. The second argument is
@@ -70,12 +70,10 @@ Vagrant.configure(2) do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
-  config.vm.provision "shell", run: "always", inline: <<-SHELL
-    sudo /usr/sbin/ip route del default
-    sudo /usr/sbin/ip route add default via  172.28.32.254  dev eth1
-    sudo yum install -y vim
-    sudo yum install -y lsof
-    sudo yum install -y wget
-    sudo yum install -y epel-release
-  SHELL
+  #config.vm.provision "shell", run: "always", inline: <<-SHELL
+  #  sudo yum install -y vim
+  #  sudo yum install -y lsof
+  #  sudo yum install -y wget
+  #  sudo yum install -y epel-release
+  #SHELL
 end
