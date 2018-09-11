@@ -13,9 +13,12 @@ Vagrant.configure(2) do |config|
   # https://docs.vagrantup.com.
   config.vm.hostname = $hostname
 
+  config.ssh.username = "vagrant"
+  config.ssh.password = "vagrant"
+
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "centos-7.2-100g-v2"
+  config.vm.box = "centos-7.2-100g-v3"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
